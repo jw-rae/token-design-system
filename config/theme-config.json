@@ -1,0 +1,191 @@
+{
+    "themes": {
+        "warm": {
+            "name": "Warm",
+            "description": "Earth tones with brown and beige palette",
+            "endpoints": {
+                "light": "#faf9f7",
+                "dark": "#0c0a09"
+            },
+            "accent": {
+                "success": "#6b8e5a",
+                "warning": "#8c7860",
+                "error": "#8a6660",
+                "info": "#65758c"
+            },
+            "characteristics": {
+                "warmth": "high",
+                "contrast": "medium",
+                "saturation": "low"
+            }
+        },
+        "cool": {
+            "name": "Cool",
+            "description": "Blue-grey palette with modern feel",
+            "endpoints": {
+                "light": "#f8fafc",
+                "dark": "#020617"
+            },
+            "accent": {
+                "success": "#6d8570",
+                "warning": "#8c7555",
+                "error": "#8a5f5f",
+                "info": "#5f748c"
+            },
+            "characteristics": {
+                "warmth": "low",
+                "contrast": "medium-high",
+                "saturation": "low"
+            }
+        },
+        "pink": {
+            "name": "Pink",
+            "description": "Soft pink palette with romantic feel",
+            "endpoints": {
+                "light": "#fdf2f8",
+                "dark": "#3d1429"
+            },
+            "accent": {
+                "success": "#7a9b7a",
+                "warning": "#d4a679",
+                "error": "#a67a7a",
+                "info": "#b8829e"
+            },
+            "characteristics": {
+                "warmth": "medium-high",
+                "contrast": "medium",
+                "saturation": "medium"
+            }
+        },
+        "green": {
+            "name": "Green",
+            "description": "Natural green palette inspired by nature",
+            "endpoints": {
+                "light": "#f9faf9",
+                "dark": "#151815"
+            },
+            "accent": {
+                "success": "#7a8f7a",
+                "warning": "#c4b370",
+                "error": "#a67a7a",
+                "info": "#7ba3a3"
+            },
+            "characteristics": {
+                "warmth": "medium",
+                "contrast": "medium",
+                "saturation": "low-medium"
+            }
+        },
+        "blue": {
+            "name": "Blue",
+            "description": "Professional blue palette for business use",
+            "endpoints": {
+                "light": "#f8fafd",
+                "dark": "#0a1426"
+            },
+            "accent": {
+                "success": "#7ba8a0",
+                "warning": "#b8a885",
+                "error": "#a87a7a",
+                "info": "#6b9fd9"
+            },
+            "characteristics": {
+                "warmth": "low",
+                "contrast": "medium-high",
+                "saturation": "medium"
+            }
+        }
+    },
+    "colorScale": {
+        "description": "Non-linear color scale for better visual balance",
+        "steps": [
+            {
+                "name": "50",
+                "factor": 0.03,
+                "usage": "Lightest background"
+            },
+            {
+                "name": "100",
+                "factor": 0.08,
+                "usage": "Secondary background"
+            },
+            {
+                "name": "200",
+                "factor": 0.15,
+                "usage": "Tertiary background"
+            },
+            {
+                "name": "300",
+                "factor": 0.25,
+                "usage": "Subtle borders, disabled text"
+            },
+            {
+                "name": "400",
+                "factor": 0.40,
+                "usage": "Secondary borders, placeholders"
+            },
+            {
+                "name": "500",
+                "factor": 0.55,
+                "usage": "Interactive elements, primary buttons"
+            },
+            {
+                "name": "600",
+                "factor": 0.70,
+                "usage": "Links, focus states"
+            },
+            {
+                "name": "700",
+                "factor": 0.82,
+                "usage": "Secondary text"
+            },
+            {
+                "name": "800",
+                "factor": 0.91,
+                "usage": "Primary text in light mode"
+            },
+            {
+                "name": "900",
+                "factor": 0.96,
+                "usage": "Dark backgrounds"
+            },
+            {
+                "name": "950",
+                "factor": 0.99,
+                "usage": "Darkest background, primary text"
+            }
+        ]
+    },
+    "semanticMappings": {
+        "description": "How color scale steps map to semantic tokens",
+        "light": {
+            "background-primary": "50",
+            "background-secondary": "100",
+            "background-tertiary": "200",
+            "text-primary": "950",
+            "text-secondary": "800",
+            "text-tertiary": "700",
+            "border-primary": "300",
+            "border-secondary": "400"
+        },
+        "dark": {
+            "background-primary": "950",
+            "background-secondary": "900",
+            "background-tertiary": "800",
+            "text-primary": "50",
+            "text-secondary": "200",
+            "text-tertiary": "300",
+            "border-primary": "700",
+            "border-secondary": "600"
+        }
+    },
+    "maintainabilityFeatures": [
+        "Single configuration file defines all themes",
+        "Mathematical color interpolation ensures proportional scales",
+        "Consistent semantic mapping across all themes",
+        "Easy to add new themes by defining endpoints and accents",
+        "Automated CSS generation eliminates manual repetition",
+        "Theme characteristics help with design decisions",
+        "Usage documentation for each color scale step"
+    ]
+}
