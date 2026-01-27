@@ -1,0 +1,1335 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Design Tokens Catalog</title>
+    <link rel="stylesheet" href="css/foundations.css">
+    <link rel="stylesheet" href="css/themes.css">
+    <link rel="stylesheet" href="css/utilities.css">
+    <style>
+        /* Demo-specific styles */
+        .demo-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: var(--space-lg);
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .demo-card {
+            background: var(--color-surface-elevated);
+            border: 1px solid var(--color-border-primary);
+            border-radius: var(--border-radius-lg);
+            padding: var(--space-lg);
+            box-shadow: var(--shadow-md);
+        }
+
+        .color-swatch {
+            width: 40px;
+            height: 40px;
+            border-radius: var(--border-radius-base);
+            display: inline-block;
+            margin-right: var(--space-sm);
+            border: 1px solid var(--color-border-primary);
+        }
+
+        .top-controls {
+            position: fixed;
+            top: var(--space-lg);
+            right: var(--space-lg);
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            gap: var(--space-sm);
+            z-index: var(--z-index-50);
+            padding: var(--space-xs);
+        }
+
+        .theme-selector {
+            background: var(--color-surface-elevated);
+            padding: var(--space-sm) var(--space-md);
+            border-radius: var(--border-radius-lg);
+            border: 1px solid var(--color-border-primary);
+            box-shadow: var(--shadow-lg);
+            display: inline-flex;
+            flex-wrap: wrap;
+            gap: var(--space-sm);
+            align-items: center;
+            flex: 0 0 auto;
+            width: max-content;
+            max-width: max-content;
+            height: 48px;
+        }
+
+        .theme-selector label {
+            font-size: var(--font-size-xs);
+            font-weight: var(--font-weight-medium);
+            color: var(--color-text-secondary);
+        }
+
+        .theme-selector select {
+            background: var(--color-surface-primary);
+            color: var(--color-text-primary);
+            border: 1px solid var(--color-border-primary);
+            border-radius: var(--border-radius-md);
+            padding: var(--space-xs) var(--space-sm);
+            font-size: var(--font-size-sm);
+            cursor: pointer;
+            transition: all 200ms;
+        }
+
+        .theme-selector select:hover {
+            border-color: var(--color-border-interactive);
+        }
+
+        .theme-selector select:focus {
+            outline: none;
+            border-color: var(--color-border-focus);
+            box-shadow: 0 0 0 3px color-mix(in srgb, var(--color-brand-primary-500) 20%, transparent);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: var(--space-sm);
+            align-items: stretch;
+        }
+
+        .nav-links a {
+            display: inline-flex;
+            align-items: center;
+            background: var(--color-surface-elevated);
+            color: var(--color-text-secondary);
+            text-decoration: none;
+            padding: var(--space-sm) var(--space-md);
+            border: 1px solid var(--color-border-primary);
+            border-radius: var(--border-radius-md);
+            font-size: var(--font-size-xs);
+            font-weight: var(--font-weight-medium);
+            transition: all 200ms;
+            box-shadow: var(--shadow-md);
+            white-space: nowrap;
+            height: 48px;
+        }
+
+        .nav-links a:hover {
+            background: var(--color-surface-tertiary);
+            border-color: var(--color-border-interactive);
+            transform: translateY(-1px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .page-hero {
+            text-align: center;
+            margin-bottom: var(--space-2xl);
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
+            padding-top: var(--space-lg);
+        }
+
+        .page-hero p {
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Token catalog specific styles */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: var(--space-2xl);
+        }
+
+        .section {
+            margin-bottom: var(--space-xl);
+        }
+
+        .section-title {
+            font-size: var(--font-size-2xl);
+            font-weight: var(--font-weight-bold);
+            margin-bottom: var(--space-md);
+            padding-bottom: var(--space-sm);
+            border-bottom: 2px solid var(--color-border-primary);
+        }
+
+        .token-group {
+            background: var(--color-surface-elevated);
+            border: 1px solid var(--color-border-primary);
+            border-radius: var(--border-radius-lg);
+            padding: var(--space-md);
+            margin-bottom: var(--space-md);
+        }
+
+        .token-group-title {
+            font-size: var(--font-size-lg);
+            font-weight: var(--font-weight-semibold);
+            margin-bottom: var(--space-md);
+            color: var(--color-text-primary);
+        }
+
+        .token-item {
+            display: grid;
+            grid-template-columns: 200px 1fr 100px;
+            gap: var(--space-sm);
+            padding: var(--space-xs) var(--space-md);
+            border-bottom: 1px solid var(--color-border-primary);
+            align-items: center;
+        }
+
+        @media (max-width: 1024px) {
+            .token-item {
+                grid-template-columns: 170px 1fr 80px;
+                gap: var(--space-xs);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .token-item {
+                grid-template-columns: 120px 1fr auto;
+                gap: var(--space-sm);
+                padding: var(--space-md);
+                align-items: center;
+            }
+
+            .token-preview {
+                justify-content: flex-end;
+                margin-top: 0;
+            }
+
+            .container {
+                padding: var(--space-md);
+            }
+
+            .top-controls {
+                position: static;
+                width: 100%;
+                flex-direction: row;
+                flex-wrap: wrap;
+                align-items: center;
+                justify-content: center;
+                gap: var(--space-sm);
+                margin-top: var(--space-md);
+                margin-bottom: var(--space-md);
+                padding: 0;
+            }
+
+            .theme-selector {
+                flex: 0 0 auto;
+                min-width: 0;
+                width: max-content;
+                max-width: max-content;
+            }
+
+            .theme-selector select {
+                width: auto;
+            }
+
+            .nav-links {
+                position: static;
+                flex: 0 1 auto;
+                flex-wrap: wrap;
+                align-items: center;
+            }
+
+            h1 {
+                font-size: var(--font-size-2xl) !important;
+            }
+        }
+
+        .token-item:last-child {
+            border-bottom: none;
+        }
+
+        .token-name {
+            font-family: var(--font-family-mono);
+            font-size: var(--font-size-sm);
+            color: var(--color-text-primary);
+            font-weight: var(--font-weight-medium);
+        }
+
+        .token-value {
+            font-family: var(--font-family-mono);
+            font-size: var(--font-size-sm);
+            color: var(--color-text-secondary);
+        }
+
+        .token-preview {
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+        }
+
+        .color-preview {
+            width: 60px;
+            height: 40px;
+            border-radius: var(--border-radius-md);
+            border: 2px solid var(--color-border-primary);
+        }
+
+        .spacing-preview {
+            height: 20px;
+            background: var(--color-brand-primary-500);
+            border-radius: var(--border-radius-sm);
+        }
+
+        .text-preview {
+            padding: var(--space-sm);
+        }
+
+        .shadow-preview {
+            width: 80px;
+            height: 40px;
+            background: var(--color-surface-primary);
+            border-radius: var(--border-radius-md);
+        }
+
+        .radius-preview {
+            width: 60px;
+            height: 40px;
+            background: var(--color-brand-primary-500);
+            border: 2px solid var(--color-border-primary);
+        }
+
+        .copy-btn {
+            padding: var(--space-xs) var(--space-sm);
+            font-size: var(--font-size-xs);
+            background: var(--color-surface-secondary);
+            border: 1px solid var(--color-border-primary);
+            border-radius: var(--border-radius-sm);
+            cursor: pointer;
+            transition: all 200ms;
+            margin-left: var(--space-sm);
+        }
+
+        .copy-btn:hover {
+            background: var(--color-surface-tertiary);
+        }
+
+        .usage-hint {
+            font-size: var(--font-size-xs);
+            color: var(--color-text-tertiary);
+            margin-top: var(--space-xs);
+            font-style: italic;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Top Controls -->
+    <div class="top-controls">
+        <div class="theme-selector">
+            <label for="theme-select">Theme:</label>
+            <select id="theme-select">
+                <option value="default">Default</option>
+                <option value="warm">Warm</option>
+                <option value="cool">Cool</option>
+                <option value="pink">Pink</option>
+                <option value="green">Green</option>
+                <option value="blue">Blue</option>
+            </select>
+
+            <label for="color-scheme-select">Mode:</label>
+            <select id="color-scheme-select">
+                <option value="auto">Auto</option>
+                <option value="light">Light</option>
+                <option value="dark">Dark</option>
+            </select>
+        </div>
+        <div class="nav-links">
+            <a href="demo.html">Visual Demo</a>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="container">
+        <header class="page-hero">
+            <h1 class="text-4xl font-bold mb-md">Design Tokens Catalog</h1>
+            <p class="text-lg text-secondary max-w-3xl">
+                Complete reference of all design tokens in the system.
+            </p>
+        </header>
+
+        <!-- COLOR TOKENS -->
+        <section class="section">
+            <h2 class="section-title">Color Tokens</h2>
+
+            <div class="token-group">
+                <h3 class="token-group-title">Neutral Color Scale (11 steps)</h3>
+                <div class="token-item">
+                    <div class="token-name">--color-neutral-50</div>
+                    <div class="token-value">Lightest neutral shade</div>
+                    <div class="token-preview">
+                        <div class="color-preview" style="background: var(--color-neutral-50);"></div>
+                    </div>
+                </div>
+                <div class="token-item">
+                    <div class="token-name">--color-neutral-100</div>
+                    <div class="token-value">Very light neutral</div>
+                    <div class="token-preview">
+                        <div class="color-preview" style="background: var(--color-neutral-100);"></div>
+                    </div>
+                </div>
+                <div class="token-item">
+                    <div class="token-name">--color-neutral-200</div>
+                    <div class="token-value">Light neutral</div>
+                    <div class="token-preview">
+                        <div class="color-preview" style="background: var(--color-neutral-200);"></div>
+                    </div>
+                </div>
+                <div class="token-item">
+                    <div class="token-name">--color-neutral-300</div>
+                    <div class="token-value">Medium light neutral</div>
+                    <div class="token-preview">
+                        <div class="color-preview" style="background: var(--color-neutral-300);"></div>
+                    </div>
+                </div>
+                <div class="token-item">
+                    <div class="token-name">--color-neutral-400</div>
+                    <div class="token-value">Medium neutral</div>
+                    <div class="token-preview">
+                        <div class="color-preview" style="background: var(--color-neutral-400);"></div>
+                    </div>
+                </div>
+                <div class="token-item">
+                    <div class="token-name">--color-neutral-500</div>
+                    <div class="token-value">True neutral</div>
+                    <div class="token-preview">
+                        <div class="color-preview" style="background: var(--color-neutral-500);"></div>
+                    </div>
+                </div>
+                <div class="token-item">
+                    <div class="token-name">--color-neutral-600</div>
+                    <div class="token-value">Medium dark neutral</div>
+                    <div class="token-preview">
+                        <div class="color-preview" style="background: var(--color-neutral-600);"></div>
+                    </div>
+                </div>
+                <div class="token-item">
+                    <div class="token-name">--color-neutral-700</div>
+                    <div class="token-value">Dark neutral</div>
+                    <div class="token-preview">
+                        <div class="color-preview" style="background: var(--color-neutral-700);"></div>
+                    </div>
+                </div>
+                <div class="token-item">
+                    <div class="token-name">--color-neutral-800</div>
+                    <div class="token-value">Very dark neutral</div>
+                    <div class="token-preview">
+                        <div class="color-preview" style="background: var(--color-neutral-800);"></div>
+                    </div>
+                </div>
+                <div class="token-item">
+                    <div class="token-name">--color-neutral-900</div>
+                    <div class="token-value">Darkest neutral</div>
+                    <div class="token-preview">
+                        <div class="color-preview" style="background: var(--color-neutral-900);"></div>
+                    </div>
+                </div>
+                <div class="token-item">
+                    <div class="token-name">--color-neutral-950</div>
+                    <div class="token-value">Near black</div>
+                    <div class="token-preview">
+                        <div class="color-preview" style="background: var(--color-neutral-950);"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="token-group">
+                <h3 class="token-group-title">Brand Primary Scale (11 steps)</h3>
+                <div class="token-item">
+                    <div class="token-name">--color-brand-primary-50</div>
+                    <div class="token-value">Lightest background shade</div>
+                    <div class="token-preview">
+                        <div class="color-preview" style="background: var(--color-brand-primary-50);"></div>
+                    </div>
+                </div>
+                <div class="token-item">
+                    <div class="token-name">--color-brand-primary-100</div>
+                    <div class="token-value">Secondary background</div>
+                    <div class="token-preview">
+                        <div class="color-preview" style="background: var(--color-brand-primary-100);"></div>
+                    </div>
+                </div>
+                <div class="token-item">
+                    <div class="token-name">--color-brand-primary-200</div>
+                    <div class="token-value">Tertiary background</div>
+                    <div class="token-preview">
+                        <div class="color-preview" style="background: var(--color-brand-primary-200);"></div>
+                    </div>
+                </div>
+                <div class="token-item">
+                    <div class="token-name">--color-brand-primary-300</div>
+                    <div class="token-value">Subtle borders, disabled text</div>
+                    <div class="token-preview">
+                        <div class="color-preview" style="background: var(--color-brand-primary-300);"></div>
+                    </div>
+                </div>
+                <div class="token-item">
+                    <div class="token-name">--color-brand-primary-400</div>
+                    <div class="token-value">Secondary borders, placeholders</div>
+                    <div class="token-preview">
+                        <div class="color-preview" style="background: var(--color-brand-primary-400);"></div>
+                    </div>
+                </div>
+                <div class="token-item">
+                    <div class="token-name">--color-brand-primary-500</div>
+                    <div class="token-value">Interactive elements, primary buttons</div>
+                    <div class="token-preview">
+                        <div class="color-preview" style="background: var(--color-brand-primary-500);"></div>
+                    </div>
+                </div>
+                <div class="token-item">
+                    <div class="token-name">--color-brand-primary-600</div>
+                    <div class="token-value">Links, focus states</div>
+                    <div class="token-preview">
+                        <div class="color-preview" style="background: var(--color-brand-primary-600);"></div>
+                    </div>
+                </div>
+                <div class="token-item">
+                    <div class="token-name">--color-brand-primary-700</div>
+                    <div class="token-value">Tertiary text</div>
+                    <div class="token-preview">
+                        <div class="color-preview" style="background: var(--color-brand-primary-700);"></div>
+                    </div>
+                </div>
+                <div class="token-item">
+                    <div class="token-name">--color-brand-primary-800</div>
+                    <div class="token-value">Secondary text in light mode</div>
+                    <div class="token-preview">
+                        <div class="color-preview" style="background: var(--color-brand-primary-800);"></div>
+                    </div>
+                </div>
+                <div class="token-item">
+                    <div class="token-name">--color-brand-primary-900</div>
+                    <div class="token-value">Dark backgrounds</div>
+                    <div class="token-preview">
+                        <div class="color-preview" style="background: var(--color-brand-primary-900);"></div>
+                    </div>
+                </div>
+                <div class="token-item">
+                    <div class="token-name">--color-brand-primary-950</div>
+                    <div class="token-value">Darkest shade, primary text</div>
+                    <div class="token-preview">
+                        <div class="color-preview" style="background: var(--color-brand-primary-950);"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="token-group">
+                <h3 class="token-group-title">Semantic Background Colors</h3>
+                <div class="token-item">
+                    <div class="token-name">--color-background-primary</div>
+                    <div class="token-value">Main page background</div>
+                    <div class="token-preview">
+                        <div class="color-preview" style="background: var(--color-background-primary);"></div>
+                    </div>
+                </div>
+                <div class="token-item">
+                    <div class="token-name">--color-background-secondary</div>
+                    <div class="token-value">Secondary background areas</div>
+                    <div class="token-preview">
+                        <div class="color-preview" style="background: var(--color-background-secondary);"></div>
+                    </div>
+                </div>
+                <div class="token-item">
+                    <div class="token-name">--color-background-tertiary</div>
+                    <div class="token-value">Tertiary background areas</div>
+                    <div class="token-preview">
+                        <div class="color-preview" style="background: var(--color-background-tertiary);"></div>
+                    </div>
+                </div>
+                <div class="token-item">
+                    <div class="token-name">--color-background-inverse</div>
+                    <div class="token-value">Inverted background (dark in light mode)</div>
+                    <div class="token-preview">
+                        <div class="color-preview" style="background: var(--color-background-inverse);"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="token-group">
+                <h3 class="token-group-title">Semantic Surface Colors</h3>
+                <div class="token-item">
+                    <div class="token-name">--color-surface-primary</div>
+                    <div class="token-value">Cards, modals, main surfaces</div>
+                    <div class="token-preview">
+                        <div class="color-preview" style="background: var(--color-surface-primary);"></div>
+                    </div>
+                </div>
+                <div class="token-item">
+                    <div class="token-name">--color-surface-secondary</div>
+                    <div class="token-value">Secondary surface elements</div>
+                    <div class="token-preview">
+                        <div class="color-preview" style="background: var(--color-surface-secondary);"></div>
+                    </div>
+                </div>
+                <div class="token-item">
+                    <div class="token-name">--color-surface-tertiary</div>
+                    <div class="token-value">Tertiary surface elements</div>
+                    <div class="token-preview">
+                        <div class="color-preview" style="background: var(--color-surface-tertiary);"></div>
+                    </div>
+                </div>
+                <div class="token-item">
+                    <div class="token-name">--color-surface-elevated</div>
+                    <div class="token-value">Elevated surfaces (dropdowns, tooltips)</div>
+                    <div class="token-preview">
+                        <div class="color-preview" style="background: var(--color-surface-elevated);"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="token-group">
+                <h3 class="token-group-title">Semantic Text Colors</h3>
+                <div class="token-item">
+                    <div class="token-name">--color-text-primary</div>
+                    <div class="token-value">Primary body text</div>
+                    <div class="token-preview">
+                        <span class="text-preview" style="color: var(--color-text-primary);">Aa</span>
+                    </div>
+                </div>
+                <div class="token-item">
+                    <div class="token-name">--color-text-secondary</div>
+                    <div class="token-value">Secondary, less prominent text</div>
+                    <div class="token-preview">
+                        <span class="text-preview" style="color: var(--color-text-secondary);">Aa</span>
+                    </div>
+                </div>
+                <div class="token-item">
+                    <div class="token-name">--color-text-tertiary</div>
+                    <div class="token-value">Tertiary, hints, captions</div>
+                    <div class="token-preview">
+                        <span class="text-preview" style="color: var(--color-text-tertiary);">Aa</span>
+                    </div>
+                </div>
+                <div class="token-item">
+                    <div class="token-name">--color-text-disabled</div>
+                    <div class="token-value">Disabled text state</div>
+                    <div class="token-preview">
+                        <span class="text-preview" style="color: var(--color-text-disabled);">Aa</span>
+                    </div>
+                </div>
+                <div class="token-item">
+                    <div class="token-name">--color-text-link</div>
+                    <div class="token-value">Link text</div>
+                    <div class="token-preview">
+                        <span class="text-preview" style="color: var(--color-text-link);">Aa</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="token-group">
+                <h3 class="token-group-title">Semantic Border Colors</h3>
+                <div class="token-item">
+                    <div class="token-name">--color-border-primary</div>
+                    <div class="token-value">Default border color</div>
+                    <div class="token-preview">
+                        <div
+                            style="width: 60px; height: 40px; border: 3px solid var(--color-border-primary); border-radius: var(--border-radius-md);">
+                        </div>
+                    </div>
+                </div>
+                <div class="token-item">
+                    <div class="token-name">--color-border-secondary</div>
+                    <div class="token-value">Secondary border color</div>
+                    <div class="token-preview">
+                        <div
+                            style="width: 60px; height: 40px; border: 3px solid var(--color-border-secondary); border-radius: var(--border-radius-md);">
+                        </div>
+                    </div>
+                </div>
+                <div class="token-item">
+                    <div class="token-name">--color-border-interactive</div>
+                    <div class="token-value">Interactive element borders</div>
+                    <div class="token-preview">
+                        <div
+                            style="width: 60px; height: 40px; border: 3px solid var(--color-border-interactive); border-radius: var(--border-radius-md);">
+                        </div>
+                    </div>
+                </div>
+                <div class="token-item">
+                    <div class="token-name">--color-border-focus</div>
+                    <div class="token-value">Focus state borders</div>
+                    <div class="token-preview">
+                        <div
+                            style="width: 60px; height: 40px; border: 3px solid var(--color-border-focus); border-radius: var(--border-radius-md);">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="token-group">
+                <h3 class="token-group-title">Feedback Colors</h3>
+                <p class="usage-hint">Each feedback color has a full 10-step scale. Showing key values:</p>
+                <div class="token-item">
+                    <div class="token-name">--color-success-500</div>
+                    <div class="token-value">Primary success color</div>
+                    <div class="token-preview">
+                        <div class="color-preview" style="background: var(--color-success-500);"></div>
+                    </div>
+                </div>
+                <div class="token-item">
+                    <div class="token-name">--color-warning-500</div>
+                    <div class="token-value">Primary warning color</div>
+                    <div class="token-preview">
+                        <div class="color-preview" style="background: var(--color-warning-500);"></div>
+                    </div>
+                </div>
+                <div class="token-item">
+                    <div class="token-name">--color-error-500</div>
+                    <div class="token-value">Primary error color</div>
+                    <div class="token-preview">
+                        <div class="color-preview" style="background: var(--color-error-500);"></div>
+                    </div>
+                </div>
+                <div class="token-item">
+                    <div class="token-name">--color-info-500</div>
+                    <div class="token-value">Primary info color</div>
+                    <div class="token-preview">
+                        <div class="color-preview" style="background: var(--color-info-500);"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="token-group">
+                <h3 class="token-group-title">Border State Colors</h3>
+                <div class="token-item">
+                    <div class="token-name">--color-border-error</div>
+                    <div class="token-value">Error state borders</div>
+                    <div class="token-preview">
+                        <div
+                            style="width: 60px; height: 40px; border: 3px solid var(--color-border-error); border-radius: var(--border-radius-md);">
+                        </div>
+                    </div>
+                </div>
+                <div class="token-item">
+                    <div class="token-name">--color-border-success</div>
+                    <div class="token-value">Success state borders</div>
+                    <div class="token-preview">
+                        <div
+                            style="width: 60px; height: 40px; border: 3px solid var(--color-border-success); border-radius: var(--border-radius-md);">
+                        </div>
+                    </div>
+                </div>
+                <div class="token-item">
+                    <div class="token-name">--color-border-warning</div>
+                    <div class="token-value">Warning state borders</div>
+                    <div class="token-preview">
+                        <div
+                            style="width: 60px; height: 40px; border: 3px solid var(--color-border-warning); border-radius: var(--border-radius-md);">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SPACING TOKENS -->
+        <section class="section">
+            <h2 class="section-title">Spacing Tokens</h2>
+
+            <div class="token-group">
+                <h3 class="token-group-title">Spacing Scale</h3>
+                <div class="token-item">
+                    <div class="token-name">--space-xs</div>
+                    <div class="token-value">4px / 0.25rem</div>
+                    <div class="token-preview">
+                        <div class="spacing-preview" style="width: var(--space-xs);"></div>
+                    </div>
+                </div>
+                <div class="token-item">
+                    <div class="token-name">--space-sm</div>
+                    <div class="token-value">8px / 0.5rem</div>
+                    <div class="token-preview">
+                        <div class="spacing-preview" style="width: var(--space-sm);"></div>
+                    </div>
+                </div>
+                <div class="token-item">
+                    <div class="token-name">--space-md</div>
+                    <div class="token-value">16px / 1rem</div>
+                    <div class="token-preview">
+                        <div class="spacing-preview" style="width: var(--space-md);"></div>
+                    </div>
+                </div>
+                <div class="token-item">
+                    <div class="token-name">--space-lg</div>
+                    <div class="token-value">24px / 1.5rem</div>
+                    <div class="token-preview">
+                        <div class="spacing-preview" style="width: var(--space-lg);"></div>
+                    </div>
+                </div>
+                <div class="token-item">
+                    <div class="token-name">--space-xl</div>
+                    <div class="token-value">32px / 2rem</div>
+                    <div class="token-preview">
+                        <div class="spacing-preview" style="width: var(--space-xl);"></div>
+                    </div>
+                </div>
+                <div class="token-item">
+                    <div class="token-name">--space-2xl</div>
+                    <div class="token-value">48px / 3rem</div>
+                    <div class="token-preview">
+                        <div class="spacing-preview" style="width: var(--space-2xl);"></div>
+                    </div>
+                </div>
+                <div class="token-item">
+                    <div class="token-name">--space-3xl</div>
+                    <div class="token-value">64px / 4rem</div>
+                    <div class="token-preview">
+                        <div class="spacing-preview" style="width: var(--space-3xl);"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- TYPOGRAPHY TOKENS -->
+        <section class="section">
+            <h2 class="section-title">Typography Tokens</h2>
+
+            <div class="token-group">
+                <h3 class="token-group-title">Font Families</h3>
+                <div class="token-item">
+                    <div class="token-name">--font-family-base</div>
+                    <div class="token-value">system-ui, -apple-system, sans-serif</div>
+                    <div class="token-preview">
+                        <span style="font-family: var(--font-family-base);">Aa</span>
+                    </div>
+                </div>
+                <div class="token-item">
+                    <div class="token-name">--font-family-mono</div>
+                    <div class="token-value">Consolas, Monaco, monospace</div>
+                    <div class="token-preview">
+                        <span style="font-family: var(--font-family-mono);">Aa</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="token-group">
+                <h3 class="token-group-title">Font Sizes</h3>
+                <div class="token-item">
+                    <div class="token-name">--font-size-xs</div>
+                    <div class="token-value">0.75rem (12px)</div>
+                    <div class="token-preview">
+                        <span style="font-size: var(--font-size-xs);">Sample Text</span>
+                    </div>
+                </div>
+                <div class="token-item">
+                    <div class="token-name">--font-size-sm</div>
+                    <div class="token-value">0.875rem (14px)</div>
+                    <div class="token-preview">
+                        <span style="font-size: var(--font-size-sm);">Sample Text</span>
+                    </div>
+                </div>
+                <div class="token-item">
+                    <div class="token-name">--font-size-base</div>
+                    <div class="token-value">1rem (16px)</div>
+                    <div class="token-preview">
+                        <span style="font-size: var(--font-size-base);">Sample Text</span>
+                    </div>
+                </div>
+                <div class="token-item">
+                    <div class="token-name">--font-size-lg</div>
+                    <div class="token-value">1.125rem (18px)</div>
+                    <div class="token-preview">
+                        <span style="font-size: var(--font-size-lg);">Sample Text</span>
+                    </div>
+                </div>
+                <div class="token-item">
+                    <div class="token-name">--font-size-xl</div>
+                    <div class="token-value">1.25rem (20px)</div>
+                    <div class="token-preview">
+                        <span style="font-size: var(--font-size-xl);">Sample Text</span>
+                    </div>
+                </div>
+                <div class="token-item">
+                    <div class="token-name">--font-size-2xl</div>
+                    <div class="token-value">1.5rem (24px)</div>
+                    <div class="token-preview">
+                        <span style="font-size: var(--font-size-2xl);">Sample Text</span>
+                    </div>
+                </div>
+                <div class="token-item">
+                    <div class="token-name">--font-size-3xl</div>
+                    <div class="token-value">1.875rem (30px)</div>
+                    <div class="token-preview">
+                        <span style="font-size: var(--font-size-3xl);">Sample Text</span>
+                    </div>
+                </div>
+                <div class="token-item">
+                    <div class="token-name">--font-size-4xl</div>
+                    <div class="token-value">2.25rem (36px)</div>
+                    <div class="token-preview">
+                        <span style="font-size: var(--font-size-4xl);">Sample</span>
+                    </div>
+                </div>
+                <div class="token-item">
+                    <div class="token-name">--font-size-5xl</div>
+                    <div class="token-value">3rem (48px)</div>
+                    <div class="token-preview">
+                        <span style="font-size: var(--font-size-5xl);">Aa</span>
+                    </div>
+                </div>
+                <div class="token-item">
+                    <div class="token-name">--font-size-6xl</div>
+                    <div class="token-value">3.75rem (60px)</div>
+                    <div class="token-preview">
+                        <span style="font-size: var(--font-size-6xl);">Aa</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="token-group">
+                <h3 class="token-group-title">Additional Font Families</h3>
+                <div class="token-item">
+                    <div class="token-name">--font-family-sans</div>
+                    <div class="token-value">System sans-serif stack</div>
+                    <div class="token-preview">
+                        <span style="font-family: var(--font-family-sans);">Aa</span>
+                    </div>
+                </div>
+                <div class="token-item">
+                    <div class="token-name">--font-family-serif</div>
+                    <div class="token-value">System serif stack</div>
+                    <div class="token-preview">
+                        <span style="font-family: var(--font-family-serif);">Aa</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="token-group">
+                <h3 class="token-group-title">Extended Font Weights</h3>
+                <div class="token-item">
+                    <div class="token-name">--font-weight-thin</div>
+                    <div class="token-value">100</div>
+                    <div class="token-preview">
+                        <span style="font-weight: var(--font-weight-thin);">Sample</span>
+                    </div>
+                </div>
+                <div class="token-item">
+                    <div class="token-name">--font-weight-light</div>
+                    <div class="token-value">300</div>
+                    <div class="token-preview">
+                        <span style="font-weight: var(--font-weight-light);">Sample</span>
+                    </div>
+                </div>
+                <div class="token-item">
+                    <div class="token-name">--font-weight-extrabold</div>
+                    <div class="token-value">800</div>
+                    <div class="token-preview">
+                        <span style="font-weight: var(--font-weight-extrabold);">Sample</span>
+                    </div>
+                </div>
+                <div class="token-item">
+                    <div class="token-name">--font-weight-black</div>
+                    <div class="token-value">900</div>
+                    <div class="token-preview">
+                        <span style="font-weight: var(--font-weight-black);">Sample</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="token-group">
+                <h3 class="token-group-title">Line Height</h3>
+                <div class="token-item">
+                    <div class="token-name">--line-height-tight</div>
+                    <div class="token-value">1.25</div>
+                    <div class="token-preview"></div>
+                </div>
+                <div class="token-item">
+                    <div class="token-name">--line-height-normal</div>
+                    <div class="token-value">1.5</div>
+                    <div class="token-preview"></div>
+                </div>
+                <div class="token-item">
+                    <div class="token-name">--line-height-relaxed</div>
+                    <div class="token-value">1.625</div>
+                    <div class="token-preview"></div>
+                </div>
+                <div class="token-item">
+                    <div class="token-name">--line-height-loose</div>
+                    <div class="token-value">2</div>
+                    <div class="token-preview"></div>
+                </div>
+            </div>
+
+            <div class="token-group">
+                <h3 class="token-group-title">Letter Spacing</h3>
+                <div class="token-item">
+                    <div class="token-name">--letter-spacing-tight</div>
+                    <div class="token-value">-0.025em</div>
+                    <div class="token-preview">
+                        <span style="letter-spacing: var(--letter-spacing-tight);">Sample</span>
+                    </div>
+                </div>
+                <div class="token-item">
+                    <div class="token-name">--letter-spacing-normal</div>
+                    <div class="token-value">0em</div>
+                    <div class="token-preview">
+                        <span style="letter-spacing: var(--letter-spacing-normal);">Sample</span>
+                    </div>
+                </div>
+                <div class="token-item">
+                    <div class="token-name">--letter-spacing-wide</div>
+                    <div class="token-value">0.025em</div>
+                    <div class="token-preview">
+                        <span style="letter-spacing: var(--letter-spacing-wide);">Sample</span>
+                    </div>
+                </div>
+                <div class="token-item">
+                    <div class="token-name">--letter-spacing-wider</div>
+                    <div class="token-value">0.05em</div>
+                    <div class="token-preview">
+                        <span style="letter-spacing: var(--letter-spacing-wider);">Sample</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="token-group">
+                <h3 class="token-group-title">Font Weights</h3>
+                <div class="token-item">
+                    <div class="token-name">--font-weight-normal</div>
+                    <div class="token-value">400</div>
+                    <div class="token-preview">
+                        <span style="font-weight: var(--font-weight-normal);">Sample Text</span>
+                    </div>
+                </div>
+                <div class="token-item">
+                    <div class="token-name">--font-weight-medium</div>
+                    <div class="token-value">500</div>
+                    <div class="token-preview">
+                        <span style="font-weight: var(--font-weight-medium);">Sample Text</span>
+                    </div>
+                </div>
+                <div class="token-item">
+                    <div class="token-name">--font-weight-semibold</div>
+                    <div class="token-value">600</div>
+                    <div class="token-preview">
+                        <span style="font-weight: var(--font-weight-semibold);">Sample Text</span>
+                    </div>
+                </div>
+                <div class="token-item">
+                    <div class="token-name">--font-weight-bold</div>
+                    <div class="token-value">700</div>
+                    <div class="token-preview">
+                        <span style="font-weight: var(--font-weight-bold);">Sample Text</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- BORDER TOKENS -->
+        <section class="section">
+            <h2 class="section-title">Border Tokens</h2>
+
+            <div class="token-group">
+                <h3 class="token-group-title">Border Width</h3>
+                <div class="token-item">
+                    <div class="token-name">--border-width-0</div>
+                    <div class="token-value">0px</div>
+                    <div class="token-preview">
+                        <div style="width: 80px; height: 3px; background: var(--color-brand-primary-500);"></div>
+                    </div>
+                </div>
+                <div class="token-item">
+                    <div class="token-name">--border-width-1</div>
+                    <div class="token-value">1px</div>
+                    <div class="token-preview">
+                        <div
+                            style="width: 80px; height: var(--border-width-1); background: var(--color-brand-primary-500);">
+                        </div>
+                    </div>
+                </div>
+                <div class="token-item">
+                    <div class="token-name">--border-width-2</div>
+                    <div class="token-value">2px</div>
+                    <div class="token-preview">
+                        <div
+                            style="width: 80px; height: var(--border-width-2); background: var(--color-brand-primary-500);">
+                        </div>
+                    </div>
+                </div>
+                <div class="token-item">
+                    <div class="token-name">--border-width-4</div>
+                    <div class="token-value">4px</div>
+                    <div class="token-preview">
+                        <div
+                            style="width: 80px; height: var(--border-width-4); background: var(--color-brand-primary-500);">
+                        </div>
+                    </div>
+                </div>
+                <div class="token-item">
+                    <div class="token-name">--border-width-8</div>
+                    <div class="token-value">8px</div>
+                    <div class="token-preview">
+                        <div
+                            style="width: 80px; height: var(--border-width-8); background: var(--color-brand-primary-500);">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <h2 class="section-title" style="margin-top: var(--space-3xl);">Border Radius Tokens</h2>
+
+            <div class="token-group">
+                <h3 class="token-group-title">Border Radius Scale</h3>
+                <div class="token-item">
+                    <div class="token-name">--border-radius-none</div>
+                    <div class="token-value">0</div>
+                    <div class="token-preview">
+                        <div class="radius-preview" style="border-radius: var(--border-radius-none);"></div>
+                    </div>
+                </div>
+                <div class="token-item">
+                    <div class="token-name">--border-radius-sm</div>
+                    <div class="token-value">0.125rem (2px)</div>
+                    <div class="token-preview">
+                        <div class="radius-preview" style="border-radius: var(--border-radius-sm);"></div>
+                    </div>
+                </div>
+                <div class="token-item">
+                    <div class="token-name">--border-radius-base</div>
+                    <div class="token-value">0.25rem (4px)</div>
+                    <div class="token-preview">
+                        <div class="radius-preview" style="border-radius: var(--border-radius-base);"></div>
+                    </div>
+                </div>
+                <div class="token-item">
+                    <div class="token-name">--border-radius-md</div>
+                    <div class="token-value">0.375rem (6px)</div>
+                    <div class="token-preview">
+                        <div class="radius-preview" style="border-radius: var(--border-radius-md);"></div>
+                    </div>
+                </div>
+                <div class="token-item">
+                    <div class="token-name">--border-radius-lg</div>
+                    <div class="token-value">0.5rem (8px)</div>
+                    <div class="token-preview">
+                        <div class="radius-preview" style="border-radius: var(--border-radius-lg);"></div>
+                    </div>
+                </div>
+                <div class="token-item">
+                    <div class="token-name">--border-radius-xl</div>
+                    <div class="token-value">0.75rem (12px)</div>
+                    <div class="token-preview">
+                        <div class="radius-preview" style="border-radius: var(--border-radius-xl);"></div>
+                    </div>
+                </div>
+                <div class="token-item">
+                    <div class="token-name">--border-radius-2xl</div>
+                    <div class="token-value">1rem (16px)</div>
+                    <div class="token-preview">
+                        <div class="radius-preview" style="border-radius: var(--border-radius-2xl);"></div>
+                    </div>
+                </div>
+                <div class="token-item">
+                    <div class="token-name">--border-radius-3xl</div>
+                    <div class="token-value">1.5rem (24px)</div>
+                    <div class="token-preview">
+                        <div class="radius-preview" style="border-radius: var(--border-radius-3xl);"></div>
+                    </div>
+                </div>
+                <div class="token-item">
+                    <div class="token-name">--border-radius-full</div>
+                    <div class="token-value">9999px (fully rounded)</div>
+                    <div class="token-preview">
+                        <div class="radius-preview" style="border-radius: var(--border-radius-full);"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SHADOW TOKENS -->
+        <section class="section">
+            <h2 class="section-title">Shadow Tokens</h2>
+
+            <div class="token-group">
+                <h3 class="token-group-title">Shadow Scale</h3>
+                <div class="token-item">
+                    <div class="token-name">--shadow-sm</div>
+                    <div class="token-value">Small subtle shadow</div>
+                    <div class="token-preview">
+                        <div class="shadow-preview" style="box-shadow: var(--shadow-sm);"></div>
+                    </div>
+                </div>
+                <div class="token-item">
+                    <div class="token-name">--shadow-md</div>
+                    <div class="token-value">Medium elevation</div>
+                    <div class="token-preview">
+                        <div class="shadow-preview" style="box-shadow: var(--shadow-md);"></div>
+                    </div>
+                </div>
+                <div class="token-item">
+                    <div class="token-name">--shadow-lg</div>
+                    <div class="token-value">Large elevation</div>
+                    <div class="token-preview">
+                        <div class="shadow-preview" style="box-shadow: var(--shadow-lg);"></div>
+                    </div>
+                </div>
+                <div class="token-item">
+                    <div class="token-name">--shadow-xl</div>
+                    <div class="token-value">Extra large elevation</div>
+                    <div class="token-preview">
+                        <div class="shadow-preview" style="box-shadow: var(--shadow-xl);"></div>
+                    </div>
+                </div>
+                <div class="token-item">
+                    <div class="token-name">--shadow-2xl</div>
+                    <div class="token-value">Maximum elevation</div>
+                    <div class="token-preview">
+                        <div class="shadow-preview" style="box-shadow: var(--shadow-2xl);"></div>
+                    </div>
+                </div>
+                <div class="token-item">
+                    <div class="token-name">--shadow-inner</div>
+                    <div class="token-value">Inset shadow effect</div>
+                    <div class="token-preview">
+                        <div class="shadow-preview"
+                            style="box-shadow: var(--shadow-inner); background: var(--color-surface-secondary);"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ANIMATION TOKENS -->
+        <section class="section">
+            <h2 class="section-title">Animation Tokens</h2>
+
+            <div class="token-group">
+                <h3 class="token-group-title">Duration</h3>
+                <div class="token-item">
+                    <div class="token-name">--duration-75</div>
+                    <div class="token-value">75ms - Instant</div>
+                    <div class="token-preview"></div>
+                </div>
+                <div class="token-item">
+                    <div class="token-name">--duration-150</div>
+                    <div class="token-value">150ms - Fast</div>
+                    <div class="token-preview"></div>
+                </div>
+                <div class="token-item">
+                    <div class="token-name">--duration-300</div>
+                    <div class="token-value">300ms - Normal</div>
+                    <div class="token-preview"></div>
+                </div>
+                <div class="token-item">
+                    <div class="token-name">--duration-500</div>
+                    <div class="token-value">500ms - Slow</div>
+                    <div class="token-preview"></div>
+                </div>
+            </div>
+
+            <div class="token-group">
+                <h3 class="token-group-title">Easing</h3>
+                <div class="token-item">
+                    <div class="token-name">--ease-linear</div>
+                    <div class="token-value">linear</div>
+                    <div class="token-preview"></div>
+                </div>
+                <div class="token-item">
+                    <div class="token-name">--ease-in</div>
+                    <div class="token-value">cubic-bezier(0.4, 0, 1, 1)</div>
+                    <div class="token-preview"></div>
+                </div>
+                <div class="token-item">
+                    <div class="token-name">--ease-out</div>
+                    <div class="token-value">cubic-bezier(0, 0, 0.2, 1)</div>
+                    <div class="token-preview"></div>
+                </div>
+                <div class="token-item">
+                    <div class="token-name">--ease-in-out</div>
+                    <div class="token-value">cubic-bezier(0.4, 0, 0.2, 1)</div>
+                    <div class="token-preview"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Z-INDEX TOKENS -->
+        <section class="section">
+            <h2 class="section-title">Z-Index Tokens</h2>
+
+            <div class="token-group">
+                <h3 class="token-group-title">Layering Scale</h3>
+                <div class="token-item">
+                    <div class="token-name">--z-index-0</div>
+                    <div class="token-value">0 - Base layer</div>
+                    <div class="token-preview"></div>
+                </div>
+                <div class="token-item">
+                    <div class="token-name">--z-index-10</div>
+                    <div class="token-value">10 - Elevated content</div>
+                    <div class="token-preview"></div>
+                </div>
+                <div class="token-item">
+                    <div class="token-name">--z-index-20</div>
+                    <div class="token-value">20 - Dropdowns</div>
+                    <div class="token-preview"></div>
+                </div>
+                <div class="token-item">
+                    <div class="token-name">--z-index-30</div>
+                    <div class="token-value">30 - Sticky elements</div>
+                    <div class="token-preview"></div>
+                </div>
+                <div class="token-item">
+                    <div class="token-name">--z-index-40</div>
+                    <div class="token-value">40 - Modals backdrop</div>
+                    <div class="token-preview"></div>
+                </div>
+                <div class="token-item">
+                    <div class="token-name">--z-index-50</div>
+                    <div class="token-value">50 - Modal content</div>
+                    <div class="token-preview"></div>
+                </div>
+                <div class="token-item">
+                    <div class="token-name">--z-index-max</div>
+                    <div class="token-value">9999 - Tooltips, notifications</div>
+                    <div class="token-preview"></div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script>
+        // Simple theme switching
+        const themeSelect = document.getElementById('theme-select')
+        const colorSchemeSelect = document.getElementById('color-scheme-select')
+        const html = document.documentElement
+
+        themeSelect.addEventListener('change', (e) => {
+            const theme = e.target.value
+            if (theme === 'default') {
+                html.removeAttribute('data-theme')
+            } else {
+                html.setAttribute('data-theme', theme)
+            }
+        })
+
+        colorSchemeSelect.addEventListener('change', (e) => {
+            const scheme = e.target.value
+            if (scheme === 'auto') {
+                html.removeAttribute('data-color-scheme')
+                html.classList.remove('dark')
+                // Check system preference
+                if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+                    html.classList.add('dark')
+                }
+            } else {
+                html.setAttribute('data-color-scheme', scheme)
+                html.classList.toggle('dark', scheme === 'dark')
+            }
+        })
+
+        // Initialize based on system preference
+        if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+            html.classList.add('dark')
+        }
+
+        // Listen to system preference changes
+        window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
+            if (!html.hasAttribute('data-color-scheme')) {
+                html.classList.toggle('dark', e.matches)
+            }
+        })
+    </script>
+</body>
+
+</html>

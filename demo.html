@@ -35,25 +35,59 @@
             border: 1px solid var(--color-border-primary);
         }
 
-        .theme-selector {
+        .top-controls {
             position: fixed;
-            top: var(--space-md);
-            right: var(--space-md);
+            top: var(--space-lg);
+            right: var(--space-lg);
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            gap: var(--space-sm);
+            z-index: var(--z-index-50);
+            padding: var(--space-xs);
+        }
+
+        .theme-selector {
             background: var(--color-surface-elevated);
-            padding: var(--space-md);
+            padding: var(--space-sm) var(--space-md);
             border-radius: var(--border-radius-lg);
             border: 1px solid var(--color-border-primary);
             box-shadow: var(--shadow-lg);
-            z-index: var(--z-index-50);
+            display: inline-flex;
+            flex-wrap: wrap;
+            gap: var(--space-sm);
+            align-items: center;
+            flex: 0 0 auto;
+            width: max-content;
+            max-width: max-content;
+            height: 48px;
+        }
+
+        .theme-selector label {
+            font-size: var(--font-size-xs);
+            font-weight: var(--font-weight-medium);
+            color: var(--color-text-secondary);
         }
 
         .theme-selector select {
             background: var(--color-surface-primary);
             color: var(--color-text-primary);
             border: 1px solid var(--color-border-primary);
-            border-radius: var(--border-radius-base);
-            padding: var(--space-sm);
-            margin-left: var(--space-sm);
+            border-radius: var(--border-radius-md);
+            padding: var(--space-xs) var(--space-sm);
+            font-size: var(--font-size-sm);
+            cursor: pointer;
+            transition: all 200ms;
+        }
+
+        .theme-selector select:hover {
+            border-color: var(--color-border-interactive);
+        }
+
+        .theme-selector select:focus {
+            outline: none;
+            border-color: var(--color-border-focus);
+            box-shadow: 0 0 0 3px color-mix(in srgb, var(--color-brand-primary-500) 20%, transparent);
         }
 
         .demo-button {
@@ -79,6 +113,20 @@
             flex-wrap: wrap;
         }
 
+        .page-hero {
+            text-align: center;
+            margin-bottom: var(--space-2xl);
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
+            padding-top: var(--space-lg);
+        }
+
+        .page-hero p {
+            margin-left: auto;
+            margin-right: auto;
+        }
+
         .semantic-color {
             padding: var(--space-xs) var(--space-sm);
             border-radius: var(--border-radius-sm);
@@ -102,35 +150,112 @@
         .info {
             background: var(--color-info-500);
         }
+
+        .nav-links {
+            display: flex;
+            gap: var(--space-sm);
+            align-items: stretch;
+        }
+
+        .nav-links a {
+            display: inline-flex;
+            align-items: center;
+            background: var(--color-surface-elevated);
+            color: var(--color-text-secondary);
+            text-decoration: none;
+            padding: var(--space-sm) var(--space-md);
+            border: 1px solid var(--color-border-primary);
+            border-radius: var(--border-radius-md);
+            font-size: var(--font-size-xs);
+            font-weight: var(--font-weight-medium);
+            transition: all 200ms;
+            box-shadow: var(--shadow-md);
+            white-space: nowrap;
+            height: 48px;
+        }
+
+        .nav-links a:hover {
+            background: var(--color-surface-tertiary);
+            border-color: var(--color-border-interactive);
+            transform: translateY(-1px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        @media (max-width: 768px) {
+            .demo-grid {
+                grid-template-columns: 1fr;
+                gap: var(--space-md);
+                padding: var(--space-md);
+            }
+
+            .top-controls {
+                position: static;
+                width: 100%;
+                flex-direction: row;
+                flex-wrap: wrap;
+                align-items: center;
+                justify-content: center;
+                gap: var(--space-sm);
+                margin-top: var(--space-md);
+                margin-bottom: var(--space-md);
+                padding: 0;
+            }
+
+            .theme-selector {
+                flex: 0 0 auto;
+                min-width: 0;
+                width: max-content;
+                max-width: max-content;
+            }
+
+            .theme-selector select {
+                width: auto;
+            }
+
+            .nav-links {
+                position: static;
+                flex: 0 1 auto;
+                flex-wrap: wrap;
+                align-items: center;
+            }
+
+            h1 {
+                font-size: var(--font-size-2xl) !important;
+            }
+        }
     </style>
 </head>
 
 <body>
-    <!-- Theme Selector -->
-    <div class="theme-selector">
-        <label for="theme-select">Theme:</label>
-        <select id="theme-select">
-            <option value="default">Default</option>
-            <option value="warm">Warm</option>
-            <option value="cool">Cool</option>
-            <option value="pink">Pink</option>
-            <option value="green">Green</option>
-            <option value="blue">Blue</option>
-        </select>
+    <!-- Top Controls -->
+    <div class="top-controls">
+        <div class="theme-selector">
+            <label for="theme-select">Theme:</label>
+            <select id="theme-select">
+                <option value="default">Default</option>
+                <option value="warm">Warm</option>
+                <option value="cool">Cool</option>
+                <option value="pink">Pink</option>
+                <option value="green">Green</option>
+                <option value="blue">Blue</option>
+            </select>
 
-        <label for="color-scheme-select">Mode:</label>
-        <select id="color-scheme-select">
-            <option value="auto">Auto</option>
-            <option value="light">Light</option>
-            <option value="dark">Dark</option>
-        </select>
+            <label for="color-scheme-select">Mode:</label>
+            <select id="color-scheme-select">
+                <option value="auto">Auto</option>
+                <option value="light">Light</option>
+                <option value="dark">Dark</option>
+            </select>
+        </div>
+        <div class="nav-links">
+            <a href="tokens-catalog.html">Token Catalog</a>
+        </div>
     </div>
-
     <!-- Main Content -->
     <div class="p-2xl">
-        <header class="text-center mb-2xl">
+        <header class="page-hero">
             <h1 class="text-4xl font-bold mb-md">Token-Based Design System</h1>
-            <p class="text-lg text-secondary max-w-3xl mx-auto">
+            <p class="text-lg text-secondary max-w-3xl">
                 A framework-agnostic design system built with design tokens.
                 Try switching themes and color modes to see the system in action.
             </p>
@@ -174,47 +299,73 @@
             <!-- Buttons & Components -->
             <div class="demo-card">
                 <h2 class="text-2xl font-semibold mb-md">Interactive Elements</h2>
-                <div class="space-y-md">
-                    <div class="flex gap-sm flex-wrap">
-                        <button class="demo-button">Primary Button</button>
-                        <button
-                            class="px-lg py-sm border border-primary rounded-md transition-colors hover:bg-surface-secondary">
-                            Secondary
-                        </button>
-                        <button class="px-lg py-sm text-link hover:underline">
-                            Link Button
-                        </button>
+                <div class="space-y-lg">
+                    <div>
+                        <h3 class="text-sm font-medium text-secondary mb-sm">Buttons</h3>
+                        <div class="flex gap-md flex-wrap">
+                            <button class="demo-button">Primary Button</button>
+                            <button
+                                class="px-lg py-sm border-2 border-primary rounded-md transition-colors hover:bg-surface-secondary">
+                                Secondary
+                            </button>
+                            <button class="px-lg py-sm text-link hover:underline">
+                                Link Button
+                            </button>
+                        </div>
                     </div>
 
-                    <input type="text" placeholder="Input field"
-                        class="w-full px-md py-sm border border-primary rounded-md bg-surface-primary text-primary focus:ring-2 focus:ring-brand-primary focus:outline-none transition-colors" />
+                    <div>
+                        <h3 class="text-sm font-medium text-secondary mb-sm">Text Input</h3>
+                        <input type="text" placeholder="Enter text here..."
+                            class="w-full px-md py-md border-2 border-primary rounded-md bg-surface-primary text-primary focus:ring-2 focus:ring-brand-primary focus:border-interactive focus:outline-none transition-all" />
+                    </div>
 
-                    <textarea placeholder="Textarea field"
-                        class="w-full px-md py-sm border border-primary rounded-md bg-surface-primary text-primary focus:ring-2 focus:ring-brand-primary focus:outline-none transition-colors"
-                        rows="3"></textarea>
+                    <div>
+                        <h3 class="text-sm font-medium text-secondary mb-sm">Text Area</h3>
+                        <textarea placeholder="Enter multiple lines of text..."
+                            class="w-full px-md py-md border-2 border-primary rounded-md bg-surface-primary text-primary focus:ring-2 focus:ring-brand-primary focus:border-interactive focus:outline-none transition-all"
+                            rows="4"></textarea>
+                    </div>
                 </div>
             </div>
 
             <!-- Layout & Spacing -->
             <div class="demo-card">
                 <h2 class="text-2xl font-semibold mb-md">Layout & Spacing</h2>
-                <div class="space-y-md">
-                    <div class="flex items-center justify-between p-md bg-surface-secondary rounded-lg">
-                        <span>Flex container</span>
-                        <span class="text-sm text-secondary">space-between</span>
+                <div class="space-y-lg">
+                    <div>
+                        <h3 class="text-sm font-medium text-secondary mb-sm">Flexbox Layout (space-between)</h3>
+                        <div
+                            class="flex items-center justify-between p-md bg-surface-secondary border-2 border-primary rounded-lg">
+                            <span class="font-medium">Left Item</span>
+                            <span class="font-medium">Right Item</span>
+                        </div>
                     </div>
 
-                    <div class="grid grid-cols-3 gap-sm">
-                        <div class="p-sm bg-surface-secondary rounded text-center text-sm">Grid 1</div>
-                        <div class="p-sm bg-surface-secondary rounded text-center text-sm">Grid 2</div>
-                        <div class="p-sm bg-surface-secondary rounded text-center text-sm">Grid 3</div>
+                    <div>
+                        <h3 class="text-sm font-medium text-secondary mb-sm">Grid Layout (3 columns)</h3>
+                        <div class="grid grid-cols-3 gap-md">
+                            <div
+                                class="p-md bg-surface-secondary border-2 border-primary rounded text-center font-medium">
+                                Grid 1</div>
+                            <div
+                                class="p-md bg-surface-secondary border-2 border-primary rounded text-center font-medium">
+                                Grid 2</div>
+                            <div
+                                class="p-md bg-surface-secondary border-2 border-primary rounded text-center font-medium">
+                                Grid 3</div>
+                        </div>
                     </div>
 
-                    <div class="p-lg border border-primary rounded-lg">
-                        <h3 class="font-medium mb-sm">Card with padding</h3>
-                        <p class="text-sm text-secondary">
-                            This card uses design tokens for consistent spacing, colors, and borders.
-                        </p>
+                    <div>
+                        <h3 class="text-sm font-medium text-secondary mb-sm">Card Component</h3>
+                        <div class="p-lg border-2 border-primary rounded-lg bg-surface-secondary">
+                            <h4 class="font-semibold mb-sm text-lg">Card Title</h4>
+                            <p class="text-secondary leading-relaxed">
+                                This card demonstrates consistent spacing using design tokens.
+                                All padding, margins, borders, and colors are token-based.
+                            </p>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -245,37 +396,37 @@
             <!-- Border Radius -->
             <div class="demo-card">
                 <h2 class="text-2xl font-semibold mb-md">Border Radius</h2>
-                <div class="grid grid-cols-4 gap-sm">
-                    <div class="h-16 bg-surface-secondary border border-primary flex items-center justify-center text-xs"
-                        style="border-radius: var(--border-radius-none)">
+                <div class="grid grid-cols-4 gap-md">
+                    <div class="h-24 bg-surface-tertiary flex items-center justify-center text-sm font-medium"
+                        style="border-radius: var(--border-radius-none); border: 3px solid var(--color-brand-primary-500);">
                         none
                     </div>
-                    <div class="h-16 bg-surface-secondary border border-primary flex items-center justify-center text-xs"
-                        style="border-radius: var(--border-radius-sm)">
+                    <div class="h-24 bg-surface-tertiary flex items-center justify-center text-sm font-medium"
+                        style="border-radius: var(--border-radius-sm); border: 3px solid var(--color-brand-primary-500);">
                         sm
                     </div>
-                    <div class="h-16 bg-surface-secondary border border-primary flex items-center justify-center text-xs"
-                        style="border-radius: var(--border-radius-md)">
+                    <div class="h-24 bg-surface-tertiary flex items-center justify-center text-sm font-medium"
+                        style="border-radius: var(--border-radius-md); border: 3px solid var(--color-brand-primary-500);">
                         md
                     </div>
-                    <div class="h-16 bg-surface-secondary border border-primary flex items-center justify-center text-xs"
-                        style="border-radius: var(--border-radius-lg)">
+                    <div class="h-24 bg-surface-tertiary flex items-center justify-center text-sm font-medium"
+                        style="border-radius: var(--border-radius-lg); border: 3px solid var(--color-brand-primary-500);">
                         lg
                     </div>
-                    <div class="h-16 bg-surface-secondary border border-primary flex items-center justify-center text-xs"
-                        style="border-radius: var(--border-radius-xl)">
+                    <div class="h-24 bg-surface-tertiary flex items-center justify-center text-sm font-medium"
+                        style="border-radius: var(--border-radius-xl); border: 3px solid var(--color-brand-primary-500);">
                         xl
                     </div>
-                    <div class="h-16 bg-surface-secondary border border-primary flex items-center justify-center text-xs"
-                        style="border-radius: var(--border-radius-2xl)">
+                    <div class="h-24 bg-surface-tertiary flex items-center justify-center text-sm font-medium"
+                        style="border-radius: var(--border-radius-2xl); border: 3px solid var(--color-brand-primary-500);">
                         2xl
                     </div>
-                    <div class="h-16 bg-surface-secondary border border-primary flex items-center justify-center text-xs"
-                        style="border-radius: var(--border-radius-3xl)">
+                    <div class="h-24 bg-surface-tertiary flex items-center justify-center text-sm font-medium"
+                        style="border-radius: var(--border-radius-3xl); border: 3px solid var(--color-brand-primary-500);">
                         3xl
                     </div>
-                    <div class="h-16 bg-surface-secondary border border-primary flex items-center justify-center text-xs"
-                        style="border-radius: var(--border-radius-full)">
+                    <div class="h-24 bg-surface-tertiary flex items-center justify-center text-sm font-medium"
+                        style="border-radius: var(--border-radius-full); border: 3px solid var(--color-brand-primary-500);">
                         full
                     </div>
                 </div>
