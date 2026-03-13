@@ -1,0 +1,34 @@
+# Development files
+.git
+.gitignore
+node_modules/
+.vscode/
+
+# Build scripts and config
+scripts/
+config/
+rollup.config.js
+tsconfig.json
+jest.config.js
+
+# Source files (if you have them)
+src/
+
+# Reports and analysis
+theme-analysis-report.json
+*.log
+
+# Testing
+test/
+tests/
+*.test.js
+*.spec.js
+
+# Documentation development files
+.editorconfig
+.prettierrc
+.eslintrc
+
+# OS files
+.DS_Store
+Thumbs.db
