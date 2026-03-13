@@ -224,7 +224,7 @@
 }
 
 @media (prefers-color-scheme: dark) {
-  [data-theme]:not([data-color-scheme="light"]) {
+  [data-theme]:not([data-color-scheme='light']) {
     --color-background-primary: var(--color-brand-primary-950);
     --color-background-secondary: var(--color-brand-primary-900);
     --color-background-tertiary: var(--color-brand-primary-800);
@@ -248,3 +248,5 @@
     --color-border-secondary: var(--color-brand-primary-600);
     --color-border-interactive: var(--color-brand-primary-500);
     --color-border-focus: var(--color-brand-primary-400);
+  }
+}

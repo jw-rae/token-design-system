@@ -1,35 +1,24 @@
 {
-    "name": "@yourorg/design-tokens",
-    "version": "1.0.0",
-    "description": "Framework-agnostic token-based design system",
-    "main": "dist/index.js",
-    "types": "dist/index.d.ts",
+    "name": "@jwrae/design-tokens",
+    "version": "1.0.3",
+    "description": "Framework-agnostic token-based design system with CSS custom properties",
+    "main": "css/index.css",
     "files": [
-        "dist/",
         "css/",
-        "tokens/"
+        "demo.html",
+        "tokens-catalog.html",
+        "README.md"
     ],
     "exports": {
-        ".": {
-            "types": "./dist/index.d.ts",
-            "import": "./dist/index.js",
-            "require": "./dist/index.cjs"
-        },
-        "./css": "./css/foundations.css",
-        "./css/themes": "./css/themes.css",
-        "./css/utilities": "./css/utilities.css",
-        "./tokens": "./tokens/tokens.json",
-        "./tokens/*": "./tokens/*.json"
+        ".": "./css/index.css",
+        "./foundations": "./css/foundations.css",
+        "./themes": "./css/themes.css",
+        "./utilities": "./css/utilities.css",
+        "./demo": "./demo.html",
+        "./catalog": "./tokens-catalog.html"
     },
     "scripts": {
-        "build": "npm run build:themes && npm run build:tokens && npm run build:css && npm run build:js",
-        "build:themes": "node scripts/generate-balanced-themes.js",
-        "build:tokens": "node scripts/build-tokens.js",
-        "build:css": "node scripts/build-css.js",
-        "build:js": "rollup -c",
-        "dev": "npm run build -- --watch",
-        "test": "jest",
-        "lint": "eslint ."
+        "prepublishOnly": "echo 'Ready to publish CSS design tokens'"
     },
     "keywords": [
         "design-system",
@@ -38,7 +27,7 @@
         "theming",
         "framework-agnostic"
     ],
-    "author": "Your Name",
+    "author": "jackgeo",
     "license": "MIT",
     "devDependencies": {
         "@rollup/plugin-typescript": "^11.1.5",
@@ -49,6 +38,10 @@
     "peerDependencies": {},
     "repository": {
         "type": "git",
-        "url": "https://github.com/yourorg/design-tokens"
+        "url": "https://github.com/jw-rae/token-design-system"
+    },
+    "homepage": "https://github.com/jw-rae/token-design-system#readme",
+    "bugs": {
+        "url": "https://github.com/jw-rae/token-design-system/issues"
     }
 }
