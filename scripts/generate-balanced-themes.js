@@ -265,6 +265,8 @@ function generateThemeCSS() {
     css += `    --color-border-secondary: var(--color-brand-primary-600);\n`;
     css += `    --color-border-interactive: var(--color-brand-primary-500);\n`;
     css += `    --color-border-focus: var(--color-brand-primary-400);\n`;
+    css += `  }\n`;
+    css += `}\n`;
 
     return css;
 }
