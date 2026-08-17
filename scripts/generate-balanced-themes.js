@@ -58,7 +58,7 @@ function generateColorScale(lightColor, darkColor) {
 
 // Theme configurations
 const themeConfigs = {
-    warm: {
+    charcoal: {
         light: '#faf9f7',
         dark: '#0c0a09',
         accent: {
@@ -68,24 +68,14 @@ const themeConfigs = {
             info: '#65758c'
         }
     },
-    cool: {
-        light: '#f8fafc',
-        dark: '#020617',
-        accent: {
-            success: '#6d8570',
-            warning: '#8c7555',
-            error: '#8a5f5f',
-            info: '#5f748c'
-        }
-    },
     pink: {
-        light: '#fdf2f8',
-        dark: '#3d1429',
+        light: '#f5eff3',
+        dark: '#2a1525',
         accent: {
-            success: '#7a9b7a',
-            warning: '#d4a679',
-            error: '#a67a7a',
-            info: '#b8829e'
+            success: '#7a927a',
+            warning: '#c49a80',
+            error: '#996868',
+            info: '#9a7a92'
         }
     },
     green: {
@@ -106,6 +96,56 @@ const themeConfigs = {
             warning: '#b8a885',
             error: '#a87a7a',
             info: '#6b9fd9'
+        }
+    },
+    vintage: {
+        light: '#eeebe5',
+        dark: '#181510',
+        accent: {
+            success: '#7a8a70',
+            warning: '#b0a070',
+            error: '#8a7060',
+            info: '#687880'
+        }
+    },
+    slate: {
+        light: '#f0f1f3',
+        dark: '#111318',
+        accent: {
+            success: '#5c7a6a',
+            warning: '#a09070',
+            error: '#906060',
+            info: '#6078a0'
+        }
+    },
+    ember: {
+        light: '#f6f0ec',
+        dark: '#1a0e08',
+        accent: {
+            success: '#6a8a5a',
+            warning: '#c49040',
+            error: '#a05040',
+            info: '#507080'
+        }
+    },
+    purple: {
+        light: '#e8e3ee',
+        dark: '#120a1e',
+        accent: {
+            success: '#7a8a7a',
+            warning: '#b0a080',
+            error: '#887070',
+            info: '#6a60a0'
+        }
+    },
+    khaki: {
+        light: '#eff0e8',
+        dark: '#1a1c12',
+        accent: {
+            success: '#6b8a50',
+            warning: '#a89855',
+            error: '#8a6050',
+            info: '#5a7068'
         }
     }
 };

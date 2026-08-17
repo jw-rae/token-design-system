@@ -26,7 +26,7 @@ export interface FontFamilyToken extends DesignToken<string[]> {
 }
 
 // Theme system types
-export type ThemeName = 'default' | 'warm' | 'cool' | 'pink' | 'green' | 'blue'
+export type ThemeName = 'default' | 'charcoal' | 'pink' | 'green' | 'blue' | 'vintage' | 'slate' | 'ember' | 'purple' | 'khaki'
 export type ColorScheme = 'light' | 'dark' | 'auto'
 
 export interface ThemeConfig {

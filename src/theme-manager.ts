@@ -77,7 +77,7 @@ export class ThemeManager {
      * Get available themes
      */
     getAvailableThemes(): ThemeName[] {
-        return ['default', 'warm', 'cool', 'pink', 'green', 'blue']
+        return ['default', 'charcoal', 'pink', 'green', 'blue', 'vintage', 'slate', 'ember', 'purple', 'khaki']
     }
 
     /**

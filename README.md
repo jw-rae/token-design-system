@@ -46,7 +46,7 @@ html.setAttribute('data-color-scheme', 'dark');
 
 **foundations.css** - Core design tokens as CSS custom properties, base element styling, and CSS reset. This file defines all the foundational design decisions.
 
-**themes.css** - Color theme variations. Contains 5 predefined themes (warm, cool, pink, green, blue) with automatic dark mode adaptations.
+**themes.css** - Color theme variations. Contains 9 predefined themes (charcoal, pink, green, blue, vintage, slate, ember, purple, khaki) with automatic dark mode adaptations.
 
 **utilities.css** - Atomic utility classes for rapid prototyping and common styling patterns. Similar to Tailwind but token-based.
 
@@ -88,8 +88,12 @@ function ThemeToggle() {
   return (
     <select onChange={(e) => setTheme(e.target.value)}>
       <option value="default">Default</option>
-      <option value="warm">Warm</option>
-      <option value="cool">Cool</option>
+      <option value="charcoal">Charcoal</option>
+      <option value="vintage">Vintage</option>
+      <option value="slate">Slate</option>
+      <option value="ember">Ember</option>
+      <option value="purple">Purple</option>
+      <option value="khaki">Khaki</option>
     </select>
   );
 }
@@ -99,8 +103,12 @@ function ThemeToggle() {
 ```vue
 <template>
   <select v-model="currentTheme" @change="updateTheme">
-    <option value="warm">Warm</option>
-    <option value="cool">Cool</option>
+    <option value="charcoal">Charcoal</option>
+    <option value="vintage">Vintage</option>
+    <option value="slate">Slate</option>
+    <option value="ember">Ember</option>
+    <option value="purple">Purple</option>
+    <option value="khaki">Khaki</option>
   </select>
 </template>
 

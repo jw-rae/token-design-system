@@ -1,7 +1,7 @@
 {
     "themes": {
-        "warm": {
-            "name": "Warm",
+        "charcoal": {
+            "name": "Charcoal",
             "description": "Earth tones with brown and beige palette",
             "endpoints": {
                 "light": "#faf9f7",
@@ -19,42 +19,23 @@
                 "saturation": "low"
             }
         },
-        "cool": {
-            "name": "Cool",
-            "description": "Blue-grey palette with modern feel",
-            "endpoints": {
-                "light": "#f8fafc",
-                "dark": "#020617"
-            },
-            "accent": {
-                "success": "#6d8570",
-                "warning": "#8c7555",
-                "error": "#8a5f5f",
-                "info": "#5f748c"
-            },
-            "characteristics": {
-                "warmth": "low",
-                "contrast": "medium-high",
-                "saturation": "low"
-            }
-        },
         "pink": {
             "name": "Pink",
-            "description": "Soft pink palette with romantic feel",
+            "description": "Refined dusty rose palette with elegant mauve undertones",
             "endpoints": {
-                "light": "#fdf2f8",
-                "dark": "#3d1429"
+                "light": "#f5eff3",
+                "dark": "#2a1525"
             },
             "accent": {
-                "success": "#7a9b7a",
-                "warning": "#d4a679",
-                "error": "#a67a7a",
-                "info": "#b8829e"
+                "success": "#7a927a",
+                "warning": "#c49a80",
+                "error": "#996868",
+                "info": "#9a7a92"
             },
             "characteristics": {
-                "warmth": "medium-high",
+                "warmth": "medium",
                 "contrast": "medium",
-                "saturation": "medium"
+                "saturation": "low"
             }
         },
         "green": {
@@ -94,7 +75,103 @@
                 "contrast": "medium-high",
                 "saturation": "medium"
             }
-        }
+        },
+        "vintage": {
+            "name": "Vintage",
+            "description": "Guinness stout and newspaper palette with foam-like yellowed tones",
+            "endpoints": {
+                "light": "#eeebe5",
+                "dark": "#181510"
+            },
+            "accent": {
+                "success": "#7a8a70",
+                "warning": "#b0a070",
+                "error": "#8a7060",
+                "info": "#687880"
+            },
+            "characteristics": {
+                "warmth": "medium",
+                "contrast": "medium",
+                "saturation": "very-low"
+            }
+        },
+        "slate": {
+            "name": "Slate",
+            "description": "Cool mineral greys with steel-blue undertones like wet stone",
+            "endpoints": {
+                "light": "#f0f1f3",
+                "dark": "#111318"
+            },
+            "accent": {
+                "success": "#5c7a6a",
+                "warning": "#a09070",
+                "error": "#906060",
+                "info": "#6078a0"
+            },
+            "characteristics": {
+                "warmth": "low",
+                "contrast": "medium",
+                "saturation": "low"
+            }
+        },
+        "ember": {
+            "name": "Ember",
+            "description": "Deep charcoal with molten orange and red accents like glowing coals",
+            "endpoints": {
+                "light": "#f6f0ec",
+                "dark": "#1a0e08"
+            },
+            "accent": {
+                "success": "#6a8a5a",
+                "warning": "#c49040",
+                "error": "#a05040",
+                "info": "#507080"
+            },
+            "characteristics": {
+                "warmth": "high",
+                "contrast": "high",
+                "saturation": "medium"
+            }
+        },
+        "purple": {
+            "name": "Purple",
+            "description": "Faded lavender palette with discreet violet undertones",
+            "endpoints": {
+                "light": "#e8e3ee",
+                "dark": "#120a1e"
+            },
+            "accent": {
+                "success": "#7a8a7a",
+                "warning": "#b0a080",
+                "error": "#887070",
+                "info": "#6a60a0"
+            },
+            "characteristics": {
+                "warmth": "medium",
+                "contrast": "medium-low",
+                "saturation": "low"
+            }
+        },
+        "khaki": {
+            "name": "Khaki",
+            "description": "Army green and camouflage palette with muted earth tones",
+            "endpoints": {
+                "light": "#eff0e8",
+                "dark": "#1a1c12"
+            },
+            "accent": {
+                "success": "#6b8a50",
+                "warning": "#a89855",
+                "error": "#8a6050",
+                "info": "#5a7068"
+            },
+            "characteristics": {
+                "warmth": "medium",
+                "contrast": "medium",
+                "saturation": "low"
+            }
+        },
+
     },
     "colorScale": {
         "description": "Non-linear color scale for better visual balance",

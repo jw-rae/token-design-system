@@ -1,6 +1,6 @@
 {
     "name": "@jwrae/design-tokens",
-    "version": "1.0.3",
+    "version": "1.1.0",
     "description": "Framework-agnostic token-based design system with CSS custom properties",
     "main": "css/index.css",
     "files": [
