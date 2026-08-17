@@ -1,11 +1,10 @@
 {
     "name": "@jwrae/design-tokens",
-    "version": "1.1.2",
+    "version": "1.1.3",
     "description": "Framework-agnostic token-based design system with CSS custom properties",
     "main": "css/index.css",
     "files": [
         "css/",
-        "scripts/patch-themes.cjs",
         "demo.html",
         "tokens-catalog.html",
         "README.md"
@@ -19,7 +18,6 @@
         "./catalog": "./tokens-catalog.html"
     },
     "scripts": {
-        "postinstall": "node scripts/patch-themes.cjs",
         "prepublishOnly": "echo 'Ready to publish CSS design tokens'"
     },
     "keywords": [
