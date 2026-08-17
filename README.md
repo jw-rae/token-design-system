@@ -26,7 +26,7 @@ import '@jwrae/design-tokens';
 
 // Use theme switching via JavaScript
 const html = document.documentElement;
-html.setAttribute('data-theme', 'warm');
+html.setAttribute('data-theme', 'charcoal');
 html.setAttribute('data-color-scheme', 'dark');
 ```
 
@@ -116,7 +116,7 @@ function ThemeToggle() {
 import { ref } from 'vue';
 import '@jwrae/design-tokens';
 
-const currentTheme = ref('warm');
+const currentTheme = ref('charcoal');
 const updateTheme = () => {
   document.documentElement.setAttribute('data-theme', currentTheme.value);
 };
